@@ -24,7 +24,6 @@
             </v-list>
         </v-navigation-drawer>
 
-
         <v-toolbar app dark dense short class="primary">
             <v-app-bar-nav-icon
                     class="hidden-md-and-up"
@@ -61,8 +60,11 @@
             }
         },
         computed: {
+            isUserAuth() {
+                return this.$store.getters.isUserAuth
+            },
             menuItems() {
-                return [
+                return this.isUserAuth ? [
                     {
                         icon: 'visibility',
                         title: 'Читать',
@@ -82,7 +84,8 @@
                         icon: 'exit_to_app',
                         title: 'Выйти',
                         route: '/logout'
-                    },
+                    }
+                ] : [
                     {
                         icon: 'input',
                         title: 'Войти',
